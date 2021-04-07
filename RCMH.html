@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>DAKboard</title>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,300,400">
+	<link rel="stylesheet" href="/css/app.css?20190318">
+	<link rel="stylesheet" href="/css/screen-layout-custom.css?201909101">
+	
+	<link rel="stylesheet" 
+		href="https://pro.fontawesome.com/releases/v5.12.0/css/all.css" 
+		integrity="sha384-ekOryaXPbeCpWQNxMwSWVvQ0+1VrStoPJq54shlYhR8HzQgig1v5fas6YgOqLoKz" 
+		crossorigin="anonymous">
+
+	<meta charset="UTF-8">
+	<meta http-equiv="refresh" content="21600" />
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="mobile-web-app-capable" content="yes">
+	<meta name="google" content="notranslate">
+	<link rel="apple-touch-icon" href="https://static.dakboard.com/assets/img/dakboard-logos/apple-touch-icon.png">
+	<link rel="icon" sizes="192x192" href="https://static.dakboard.com/assets/img/dakboard-logos/apple-touch-icon.png">
+
+	<script
+	  src="https://code.jquery.com/jquery-2.1.1.min.js"
+	  integrity="sha256-h0cGsrExGgcZtSZ/fRz4AwV+Nn6Urh/3v3jFRQ0w9dQ="
+	  crossorigin="anonymous"></script>
+	  
+</head>
+<body>
+	<script src="https://static.dakboard.com/assets/js/progressbar.min.js"></script>
+	<script src="https://static.dakboard.com/assets/js/moment/moment.min.js"></script>
+	<script src="https://static.dakboard.com/assets/js/moment/moment-timezone-2010-2010.min.js"></script>
+	
+	<style>
+
+
+body {
+	background: ;
+	color: #ffffff;
+	
+	}
+
+.brightness {
+	background: rgba(0,0,0, );
+	z-index:15;
+}
+</style>
+
+<script>
+	var blocks={};
+	var text_schedules={};
+</script>
+
+<div class="font-large layout- layout-portrait">
+	
+	<a href="/screens" class="options-link xsmall dark">
+		<span class="fas fa-cog"></span>&nbsp;&nbsp;<span class='options-desc font-light'>Options</span>
+	</a>
+
+	
+	<script>
+		blocks['5e516be30f6c133feb525fd6'] = {
+			is_active: true,
+			schedules: [ 			]
+		}
+	</script>
+	
+	
+				<div class="block block-photos photos "
+				id="5e516be30f6c133feb525fd6"
+				style="top: 0%; 
+					left: 0%; 
+					width: 100%; 
+					height: 100%; 
+					z-index:100;													">
+			</div>
+		
+<script>
+$('#5e516be30f6c133feb525fd6').append('<div class="abs-zero" style="background: rgba(0,0,0, 0.4); z-index:16"></div>\
+	<div class="photo-group-1 abs-zero" style="transition: opacity 1s ease-in; /*will-change: opacity;*/ z-index: 15; opacity: 0;">\
+		<div class="photo-group-1-photo abs-zero vignette" style="z-index:5; "></div>\
+		<div class="photo-group-1-blur abs-zero"></div>\
+	</div>\
+	<div class="photo-group-2 abs-zero" style="transition: opacity 1s ease-in; /*will-change: opacity;*/ z-index: 15; opacity: 0">\
+		<div class="photo-group-2-photo abs-zero vignette" style="z-index:5; "></div>\
+		<div class="photo-group-2-blur abs-zero"></div>\
+	</div>\
+	<div id="meta5e516be30f6c133feb525fd6" class="photo-meta translucent hide">\
+		<div id="owner5e516be30f6c133feb525fd6" class="photo-owner xxsmall pull-right"></div>\
+		<div id="title5e516be30f6c133feb525fd6" class="photo-title xxsmall pull-left dim"></div>\
+		<div style="clear: both;"></div>\
+	</div>\
+	<div id="progress5e516be30f6c133feb525fd6" class="progress-bar hide"></div>');
+	
+
+var cached_photos5e516be30f6c133feb525fd6;
+
+
+function updatePhoto5e516be30f6c133feb525fd6() 
+{
+	var settings = {
+		_id: "5e516be30f6c133feb525fd6",
+		crop: 1,
+		blur: 0,
+		meta: 0,
+		useTransitions: 1,
+		photoChange: 86400000,
+	};
+	
+	// Make sure the photo block is active
+	if ( ! blocks['5e516be30f6c133feb525fd6'].is_active) {
+		setTimeout(function() {
+			updatePhoto5e516be30f6c133feb525fd6();
+		}, settings.photoChange);
+		
+		return;
+	}
+	
+	// Determine the current top/bottom layers
+	if ($('#' + settings._id + ' .photo-group-1').css('opacity') == 1) {
+	//if ($('#' + settings._id + ' .photo-group-1').hasClass('fade-in')) {
+		var top = $('#' + settings._id + ' .photo-group-1-photo');
+		var bottom = $('#' + settings._id + ' .photo-group-2-photo');
+		
+		var top_group = $('#' + settings._id + ' .photo-group-1');
+		var bottom_group = $('#' + settings._id + ' .photo-group-2');
+		
+		var blur_top = $('#' + settings._id + ' .photo-group-1-blur');
+		var blur_bottom = $('#' + settings._id + ' .photo-group-2-blur');
+	}
+	else {
+		var bottom = $('#' + settings._id + ' .photo-group-1-photo');
+		var top = $('#' + settings._id + ' .photo-group-2-photo');
+		
+		var bottom_group = $('#' + settings._id + ' .photo-group-1');
+		var top_group = $('#' + settings._id + ' .photo-group-2');
+		
+		var blur_bottom = $('#' + settings._id + ' .photo-group-1-blur');
+		var blur_top = $('#' + settings._id + ' .photo-group-2-blur');
+	}
+	
+	//top_group.css({"will-change": "opacity"});
+	//bottom_group.css({"will-change": "opacity"});
+	
+	// Determine if we can use cached content in cached_photos var, or if 
+	// data from the server is needed
+	if (typeof cached_photos5e516be30f6c133feb525fd6 !== 'undefined' && cached_photos5e516be30f6c133feb525fd6.length > 0){ 
+		// Use the first elem in the array, then remove it
+		doRotation(cached_photos5e516be30f6c133feb525fd6[0]);
+		cached_photos5e516be30f6c133feb525fd6.shift();
+	}
+	else {
+		// Get data from server
+		$.getJSON("/screen/5cb74d1610d0/block/5e516be30f6c133feb525fd6", getJsonCallback);
+	}	
+	
+	// New data revceived from server. Determine if 
+	// it's a single photo, or an array of photos.
+	function getJsonCallback(data) 
+	{
+		if (Array.isArray(data)) {
+			cached_photos5e516be30f6c133feb525fd6 = data;
+			doRotation(data[0]);
+			cached_photos5e516be30f6c133feb525fd6.shift();
+		}
+		else {
+			doRotation(data);
+		}
+	}
+	
+	// Perform the photo rotation
+	function doRotation(data)
+	{
+		if (typeof data.url === 'undefined') {
+			return;
+		}
+		
+		$('<img/>').attr('src', data.url).load(function() {
+			
+			$(this).remove(); // prevent memory leaks
+			
+			bottom.css({
+				background: 'url('+data.url+') center center',
+				backgroundSize: (settings.crop) ? 'cover' : 'contain',
+				backgroundRepeat: 'no-repeat'
+			});
+			
+			if (settings.blur) {
+				blur_bottom.css({
+					background: 'url('+data.url+') center center',
+					backgroundSize: 'cover',
+					backgroundRepeat: 'no-repeat',
+					margin: '-10px',
+					filter: 'blur(10px)'
+				});
+			}
+			
+			bottom_group.css({opacity: 1});
+			
+			// Set a timeout to help improve performance 
+			if (settings.useTransitions) {
+				setTimeout(function() {
+					top_group.css({opacity: 0});
+				}, 1300);
+			} else {
+				top_group.css({opacity: 0});
+			}
+			
+			// Setup the progress bar info
+			if (settings.meta) {
+				var info = '<span class="dark">Photo</span> ';
+				if (data.owner) {
+					info = info + ' <span class="dark">by</span> <a href="'+data.profile_url+'" target="_blank">' + data.owner + '</a>';
+				}
+				
+				$('#owner' + settings._id).html(info + ' <span class="dark">'+data.verb+'</span> ' + data.taken);
+				$('#title' + settings._id).html('<span class="far fa-camera-alt"></span>&nbsp;&nbsp;' + data.title);
+				
+				// Reset and animate the progress bar
+				photoProgressBar5e516be30f6c133feb525fd6.set(0);
+				photoProgressBar5e516be30f6c133feb525fd6.animate(1, { duration: settings.photoChange });
+				
+			} //end meta
+			
+		});//end img.load
+	}; //end doRotation
+			
+	setTimeout(function() {
+		updatePhoto5e516be30f6c133feb525fd6();
+	}, settings.photoChange);
+}
+
+updatePhoto5e516be30f6c133feb525fd6();
+</script>	
+	
+	
+	
+	<script>
+		blocks['5e516be30f6c133feb525fd7'] = {
+			is_active: true,
+			schedules: [ 			]
+		}
+	</script>
+	
+	
+				<div class="block block-text text "
+				id="5e516be30f6c133feb525fd7"
+				style="top: 29.511284722222%; 
+					left: 8.00078125%; 
+					width: 80.6286%; 
+					height: 48.333333333333%; 
+					z-index:100;													">
+			</div>
+		<script>
+$('#5e516be30f6c133feb525fd7').load("/screen/5cb74d1610d0/block/5e516be30f6c133feb525fd7");
+</script>	
+	
+	
+	
+	<script>
+		blocks['5e516be30f6c133feb525fd8'] = {
+			is_active: true,
+			schedules: [ {"id":"391643","start_time":"0:00","end_time":"0:00"},
+			]
+		}
+	</script>
+	
+	
+				<div class="block block-datetime datetime "
+				id="5e516be30f6c133feb525fd8"
+				style="top: 6.0001729329427%; 
+					left: 38.85703125%; 
+					width: 53.9434%; 
+					height: 15.829666666667%; 
+					z-index:100;													">
+			</div>
+		<script>
+$('#5e516be30f6c133feb525fd8').load("/screen/5cb74d1610d0/block/5e516be30f6c133feb525fd8");
+</script>	
+	
+	
+	
+	<script>
+		blocks['5e516be30f6c133feb525fdb'] = {
+			is_active: true,
+			schedules: [ 			]
+		}
+	</script>
+	
+	
+				<div class="block block-text text "
+				id="5e516be30f6c133feb525fdb"
+				style="top: 17.444936116536%; 
+					left: 6.9999267578125%; 
+					width: 85.8666%; 
+					height: 11.779666666667%; 
+					z-index:100;													">
+			</div>
+		<script>
+$('#5e516be30f6c133feb525fdb').load("/screen/5cb74d1610d0/block/5e516be30f6c133feb525fdb");
+</script>	
+	
+	
+	
+	<script>
+		blocks['5e516be30f6c133feb525fdc'] = {
+			is_active: true,
+			schedules: [ {"id":"bf4afe","start_time":"0:00","end_time":"0:00"},
+			]
+		}
+	</script>
+	
+	
+				<div class="block block-weather weather "
+				id="5e516be30f6c133feb525fdc"
+				style="top: 70.777572631836%; 
+					left: 11.199951171875%; 
+					width: 73.5634%; 
+					height: 24.198111111111%; 
+					z-index:100;													">
+			</div>
+		<script>
+function updateWeather5e516be30f6c133feb525fdc() {	
+	if (blocks['5e516be30f6c133feb525fdc'].is_active) {
+		$('#5e516be30f6c133feb525fdc').load("/screen/5cb74d1610d0/block/5e516be30f6c133feb525fdc");
+	}
+	
+	setTimeout(function() {
+		updateWeather5e516be30f6c133feb525fdc();
+	}, 1200000); 
+}
+
+updateWeather5e516be30f6c133feb525fdc();
+</script>	
+	
+	
+
+
+</div>
+
+
+
+	<style>
+	.block-text,
+	.block-todo,
+	.block-rss,
+	.block-calendar,
+	.block-datetime,
+	.block-weather,
+	.block-fetch {
+		-webkit-mask-image: linear-gradient(to bottom, white 90%, transparent);
+		mask-image: linear-gradient(to bottom, white 90%, transparent);
+	}
+	</style>
+
+
+<script>	
+$(function() {
+
+	var i = null;
+
+	if ('ontouchstart' in window) {
+		$(window).on('touchstart', function() {
+		    clearTimeout(i);
+		    $(".options-link").css({opacity: 1});
+		    i = setTimeout(function () {
+		        $(".options-link").css({opacity: 0});
+		    }, 10000);
+		});
+	} else {
+		$(window).mousemove(function() {
+		    clearTimeout(i);
+		    $(".options-link").css({opacity: 1});
+		    i = setTimeout(function () {
+		        $(".options-link").css({opacity:0});
+		    }, 10000);
+		});
+	}
+
+	i = setTimeout(function () {
+        $(".options-link").css({opacity: 0});
+    }, 10000);
+
+			setInterval(function(){
+            $.getJSON("/api/2/screens/5cb74d1610d0/version", function( data ) {
+				if (data.version > 0) {
+					location.reload();
+				}
+			});
+        }, 90000);
+
+	
+	/**
+	 * Check each block schedule and show/hide
+	 * the necessary block
+	 *
+	 */
+	function checkBlockSchedules()
+	{
+		// Check each block for a schedule
+		$.each(blocks, function(block_id, block) {
+			
+			// No schedules found, check next block
+			if ( ! block.schedules.length) {
+				return true;
+			}
+			
+			block.is_active = false;
+		
+			// Check each schedule on this block
+			for (var i in block.schedules) {
+				block.is_active = block.is_active || isScheduleActive(block.schedules[i]);
+			} 
+			
+			if (block.is_active) {
+				//console.log('showing block ' + block_id);
+				$('#' + block_id).show();
+			}
+			else {
+				//console.log('hiding block ' + block_id);
+				$('#' + block_id).hide();
+			}
+		}) // end each
+		
+		setTimeout(function(){ 
+			checkBlockSchedules();
+		}, 60000);
+		
+	} // end checkBlockSchedules()
+	
+	checkBlockSchedules();
+	
+	
+	/**
+	 * Check each scheduled text schedule and show/hide
+	 * the necessary div
+	 *
+	 */
+	function checkTextSchedules()
+	{
+		// Check each text schedule
+		$.each(text_schedules, function(id, schedule) {
+			
+			if (isScheduleActive(schedule)) {
+				$('#' + id).show();
+			}
+			else {
+				$('#' + id).hide();
+			}
+		}) // end each
+			
+		setTimeout(function(){ 
+			checkTextSchedules();
+		}, 60000);
+		
+	} // end checkSchedules()
+	
+	setTimeout(function(){ 
+		checkTextSchedules();
+	}, 750);
+
+	
+	/**
+	 * Determine if a schedule is active
+	 *
+	 * @param object schedule
+	 *
+	 * schedule = { 
+	 *   start_time: "17:00",
+	 *   end_time: "23:00",
+	 *   days: [0,1,2]
+	 * }
+	 *
+	 * @return bool
+	 */
+	function isScheduleActive(schedule)
+	{
+		var is_active = false;
+		
+		var now = new Date();
+		// Convert milliseconds to seconds
+		var now_sec = Math.floor(now.getTime() / 1000);
+		
+		var start_hours = schedule.start_time.split(":");
+		var start_date = new Date;
+		start_date.setHours(start_hours[0], start_hours[1], 0);
+		var start_sec = Math.floor(
+			start_date.getTime() / 1000
+		);
+		
+		var end_hours = schedule.end_time.split(":");
+		var end_date = new Date;
+		end_date.setHours(end_hours[0], end_hours[1], 0);
+		var end_sec = Math.floor(
+			end_date.getTime() / 1000
+		);
+		
+		// Loops into next day (ie. 8PM-4AM)
+		if (start_sec > end_sec) {
+			end_sec += 86400;
+		}
+		
+		// If no days, check the time
+		if ( ! Array.isArray(schedule.days)) {
+			if ((now_sec >= start_sec && now_sec < end_sec) || start_sec == end_sec) {
+				is_active = true;
+			}
+		}
+		// Day(s) set, check the day and time
+		else if (schedule.days.indexOf(now.getDay().toString()) != -1) {
+			if ((now_sec >= start_sec && now_sec < end_sec) || start_sec == end_sec) {
+				is_active = true;
+			}
+		}
+		
+		return is_active;
+	}
+	
+			
+		function resizeViewport(width, height) {
+		    if (window.outerWidth) {
+		        // resizeTo doesn't work in Safari
+		        window.resizeTo(
+		            width + (window.outerWidth - window.innerWidth),
+		            height + (window.outerHeight - window.innerHeight)
+		        );
+		    } else {
+		        window.resizeTo(500, 500);
+		        window.resizeTo(
+		            width + (500 - document.body.offsetWidth),
+		            height + (500 - document.body.offsetHeight)
+		        );
+		    }
+		};
+		
+		resizeViewport(500, 900);
+		
+		var screenWidth = 500;
+		var screenHeight = 900;
+		var screenAspect = 'aspecthd';
+		
+		var defaultWidths = {
+			aspectuw: 2560,
+			aspect16_10: 1920,
+			aspecthd: 1920,
+			aspectsd: 1680,
+			aspectsq: 1200
+		}
+		
+		$(window).on("resize", function() {
+			if ($(window).width() > $(window).height()) {
+				var zoomFactor = $(window).width() / ((screenAspect == 'aspectcustom') ? screenWidth : defaultWidths[screenAspect]);
+			}
+			else {
+				var zoomFactor = $(window).height() / ((screenAspect == 'aspectcustom') ? screenHeight : defaultWidths[screenAspect]);;
+			}
+			
+			if(navigator.userAgent.toLowerCase().indexOf('firefox') > -1){
+			    // Firefox doesn't support zoom. Do stupid stuff:
+			    $('body').css({
+					transform: 'scale('+zoomFactor+')', 
+					transformOrigin: 'top left',
+					width: ((1/zoomFactor) * 100) + '%',
+					height: ((1/zoomFactor) * 100) + '%'
+				});
+			}
+			else {
+				$('body').css({zoom: zoomFactor});
+			}
+		});
+		
+		$(window).resize();
+	
+});
+</script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.8.6/showdown.min.js"></script>
+</body>
+</html>

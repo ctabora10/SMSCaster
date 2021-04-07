@@ -1,0 +1,55 @@
+
+ #Declare the file path and sheet name
+$file = "C:\Users\$env:USERNAME\Documents\SMS_Autoresponder\TargetList.xlsx"
+
+
+$sheetName = "TargetSheet"
+#Create an instance of Excel.Application and Open Excel file
+$objExcel = New-Object -ComObject Excel.Application
+$workbook = $objExcel.Workbooks.Open($file)
+$sheet = $workbook.Worksheets.Item($sheetName)
+$objExcel.Visible=$false
+
+
+
+#Count max row
+$rowMax = ($sheet.UsedRange.Rows).count
+#Declare the starting positions
+
+
+$rowName,$colName = 1,1
+$rowNumber,$colNumber = 1,2
+
+
+
+#loop to get values and store it
+for ($i=1; $i -le $rowMax-1; $i++)
+{
+$name = $sheet.Cells.Item($rowName+$i,$colName).text
+$Number = $sheet.Cells.Item($rowNumber+$i,$colNumber).text
+
+
+
+
+#Launch the SMS
+$MessageContentMass = "(MASS MESSAGE TEST)-
+
+Hey $name, Its Saves Big to be part of the Family, Use Code FAMILYTREE your next time in and recieve 35% off your order!
+ 
+Text STOP to be removed from the Reward Member notification list."
+$body = @{
+
+
+  "phone"="$Number"
+  "message"="$MessageContentMass"
+  "key"="3ab03b66488923feeada54e25e5118781c190991RIHEVBwMxq0XoZuG8EsnZNJyl"
+}
+$submit = Invoke-WebRequest -Uri https://textbelt.com/text -Body $body -Method Post
+
+
+Add-Type -AssemblyName PresentationFramework
+
+[System.Windows.MessageBox]::Show("SMS are now in Transit, Due to Message limit constraints Text may be delayed slightly.
+
+
+DELIVERY REPORT $name Successful Pushed to -Phone_Number- $Number")
